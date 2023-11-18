@@ -23,7 +23,6 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks/redux.hooks";
 import {
   Textfield,
   AutoComplete,
-  AutoTextField,
   Datepicker,
   CheckBox,
   RadioButton,
@@ -71,7 +70,7 @@ export default function TestPageOne() {
               },
             ]}
             renderInput={(params) => (
-              <Textfield {...params} label="autocomplete" />
+              <Textfield {...params} label="autocomplete"/>
             )}
             // defaultValue={{label:"test", value: 'test'}}
           />

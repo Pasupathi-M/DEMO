@@ -8,42 +8,28 @@ import {
   AutocompleteProps,
   TextFieldProps,
   SxProps,
+  AutocompleteRenderInputParams,
 } from "@mui/material";
-import { styled } from "@mui/system";
-import { FC, ReactNode } from "react";
+
 // ************* theme
 
 import { theme } from "../../../theme/AppTheme";
 import { Theme } from "@emotion/react";
 
-const CustomAutocomplete = () => {
-  const customStyles = (theme: any) => ({
-    width: { sm: "50%", md: 340 },
-    "& + .MuiAutocomplete-popper .MuiAutocomplete-option": {
-      backgroundColor: "#363636",
-    },
-    "& + .MuiAutocomplete-popper .MuiAutocomplete-option[aria-selected='true']":
-      {
-        backgroundColor: theme.palette.secondary,
-      },
-    "& + .MuiAutocomplete-popper .MuiAutocomplete-option[aria-selected ='true'] .Mui-focused":
-      {
-        backgroundColor: "yellow",
-      },
-  });
-};
+import { Textfield } from "../mui.index";
 
 interface CustomAutocompleteProps
   extends AutocompleteProps<Record<string, any> | string, true, true, true> {}
 
 export const AutoComplete: FC<CustomAutocompleteProps> = (
   props: CustomAutocompleteProps
-) => <Autocomplete 
-size="small"
-{...props} 
-/>;
-// const StyledAutotext = styled(TextField)(() => ({}));
-
-// export const AutoTextField = ({ children, ...rest }: TextFieldProps) => (
-//   <TextField {...rest}>{children}</TextField>
-// );
+) => {
+  const defaultProps: CustomAutocompleteProps = {
+    size: "small",
+    renderInput: (params) => {
+      return <Textfield {...params} />;
+    },
+    options: [],
+  };
+  return <Autocomplete {...defaultProps} {...props} />;
+};

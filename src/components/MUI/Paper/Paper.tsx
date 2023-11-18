@@ -3,7 +3,7 @@
 
 // *********** MUI
 import { Paper } from "@mui/material";
-import { theme } from "../../../theme/AppTheme";
+import { theme, ALLCOLORS } from "../../../theme/AppTheme";
 
 export const PaperContainer = ({ children }: any) => {
   return (
@@ -12,12 +12,12 @@ export const PaperContainer = ({ children }: any) => {
         padding: "10px 10px 10px 10px",
         height: "100%",
         width: "100%",
-        opacity: `${theme.palette.action.activatedOpacity}`,
+        // opacity: `${theme.palette.action.activatedOpacity}`,
         borderRadius: 2,
-        // background: 'green',
+        background: 'white',
         display: "flex",
         flexWrap: "wrap",
-        border: "2px solid black",
+        // border: "2px solid black",
       }}
     >
       {children}
