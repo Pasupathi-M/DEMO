@@ -12,7 +12,7 @@ class AxiosService{
 
     onRequest(config:AxiosRequestConfig ): AxiosRequestConfig | any  {
         if(config?.headers){
-            config.headers['access-toek'] = LocalStorageService.getItem('access-token') || ''
+            config.headers['Authorization'] = LocalStorageService.getItem('token') || ''
         }
         return config 
     }
