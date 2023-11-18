@@ -54,7 +54,7 @@ export const AppContentBox = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.primary.main}`,
   borderStyle: 'dashed',
   padding: 5,
-  backgroundImage: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.secondary.light})`,
+  backgroundColor: `#ffffff`,
   borderRadius: 15,
   height: '92%',
   width: '100%',

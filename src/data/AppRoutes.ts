@@ -10,16 +10,16 @@ export const APP_ROUTES: Record<string, any> = Object.freeze({
         pathName:'/signup'
     },
     LANDING: {
-        pathName: 'landing'
+        pathName: 'sales10x'
     },
     MEDIA: {
         pathName: 'expo/media'
     },
     TEST1: {
-        pathName: 'test1'
+        pathName: 'test'
     },
     TEST2: {
-        pathName: 'test2'
+        pathName: 'test'
     },
     TEST3: {
         pathName: 'test3'

@@ -19,7 +19,7 @@ export const PageComponentArray: IPageComponentArray[] = [
     {
         path: APP_ROUTES?.TEST1?.pathName,
         element: <TestOne />,
-        isLazy: true
+        isLazy: false
     },
     {
         path: APP_ROUTES?.TEST2.pathName,
