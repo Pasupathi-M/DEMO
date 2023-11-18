@@ -17,7 +17,6 @@ const SignUp = lazy(() => import('./pages/Authorizations/Signup'));
 
 // ******************* App Data
 import { APP_ROUTES } from './data/AppRoutes';
-import TestPage5 from './pages/Test/TestPage5';
 
 function App() {
   console.log('PageComponents', PageComponents());
@@ -39,19 +38,11 @@ function App() {
           </Suspense>
         }
       />
-      {/* <Route
+      <Route
         path={APP_ROUTES?.LANDING?.pathName}
         element={<AppLayout />}
         key={RANDOM_UNIQUE()}
       >
-        {...PageComponents()}
-      </Route> */}
-      <Route
-        path={APP_ROUTES?.LANDING?.pathName}
-        element={<TestPage5 />}
-        key={RANDOM_UNIQUE()}
-      >
-        {/* {...TestArray} */}
         {...PageComponents()}
       </Route>
     </Routes>

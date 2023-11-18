@@ -167,7 +167,7 @@ function TestPage5() {
     setSelectedRow(event.api.getSelectedRows());
   };
   return (
-    <div style={{ padding: 50 }}>
+    <div>
       {/* <StyledBox> */}
       <ServerSideGrid
         rowData={Data}
