@@ -1,23 +1,26 @@
-import "./styles/App.scss";
-import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+/** @format */
+
+import './styles/App.scss';
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 // Component
-import AppLayout from "./app-layout/AppLayout";
-import PageComponents from "./components/MUI/AppContent/PageComponents/PageComponents";
+import AppLayout from './app-layout/AppLayout';
+import PageComponents from './components/MUI/AppContent/PageComponents/PageComponents';
 
 // ******************* Util
-import { RANDOM_UNIQUE } from "./utils/getUnique";
+import { RANDOM_UNIQUE } from './utils/getUnique';
 
 // ************************* Pages
-const SignIn = lazy(() => import("./pages/Authorizations/SignIn"));
-const SignUp = lazy(() => import("./pages/Authorizations/Signup"));
+const SignIn = lazy(() => import('./pages/Authorizations/SignIn'));
+const SignUp = lazy(() => import('./pages/Authorizations/Signup'));
 
 // ******************* App Data
-import { APP_ROUTES } from "./data/AppRoutes";
+import { APP_ROUTES } from './data/AppRoutes';
+import TestPage5 from './pages/Test/TestPage5';
 
 function App() {
-  console.log("PageComponents", PageComponents());
+  console.log('PageComponents', PageComponents());
   return (
     <Routes>
       <Route
@@ -36,9 +39,16 @@ function App() {
           </Suspense>
         }
       />
-      <Route
+      {/* <Route
         path={APP_ROUTES?.LANDING?.pathName}
         element={<AppLayout />}
+        key={RANDOM_UNIQUE()}
+      >
+        {...PageComponents()}
+      </Route> */}
+      <Route
+        path={APP_ROUTES?.LANDING?.pathName}
+        element={<TestPage5 />}
         key={RANDOM_UNIQUE()}
       >
         {/* {...TestArray} */}

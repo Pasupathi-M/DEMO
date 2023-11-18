@@ -129,6 +129,9 @@ function TestPage5() {
   const [page, setPage] = useState(0);
   const [totalData, setTotalData] = useState(30);
   const defaultPagination = [10, 20, 30, 40, 50, 100, 200, 500];
+  console.log('page12', page);
+  // console.log('page', page);
+  console.log('pageSize', pageSize);
 
   console.log('selectedRow', selectedRow);
   const columnDefs: ColDef[] = [
@@ -164,76 +167,47 @@ function TestPage5() {
     setSelectedRow(event.api.getSelectedRows());
   };
   return (
-    <Grid container item>
-      <StyledBox>
-        <ServerSideGrid
-          rowData={Data}
-          headerHeight={80}
-          columnDefs={columnDefs}
-          defaultColDef={{
-            sortable: true,
-            resizable: true,
-            filter: true,
-            flex: 1,
-            minWidth: 100,
-          }}
-          rowHeight={55}
-          handleCellClick={undefined}
-          loading={false}
-          disableClickSelectionRenderers={false}
-          noDataTxt='No Records Found'
-          TableHeight={80}
-          // rowSelection={rowSelectionType}
-          onSelectionChanged={onSelectionChanged}
-          pageSize={pageSize}
-          totalDataCount={totalData}
-          serverRowSize={pageSize}
-          currentPage={page}
-          serverSidePagination={true}
-          serverPageCount={Math.ceil(totalData / pageSize)}
-          setServerRowSize={(rowSize: number) => {
-            setPageSize(rowSize);
-          }}
-          setServerSidePage={(e: any, p: number) => {
-            setPage(p);
-          }}
-        />
-        <Box
-          sx={{
-            position: 'relative',
-            top: '-58px',
-            left: 20,
-            width: '50%',
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-            <Box sx={{ mr: 1 }}>Row per page</Box>
-            <Select
-              variant='standard'
-              //   disabled={loading}
-              value={pageSize}
-              onChange={(e: any) => {
-                setPage(0);
-                setPageSize(e.target.value);
-              }}
-            >
-              {_.map(defaultPagination, (value, idx) => (
-                <MenuItem key={idx} value={value}>
-                  {value}
-                </MenuItem>
-              ))}
-            </Select>
-          </Box>
-        </Box>
-        {/* </div> */}
-      </StyledBox>
-    </Grid>
+    <div style={{ padding: 50 }}>
+      {/* <StyledBox> */}
+      <ServerSideGrid
+        rowData={Data}
+        headerHeight={80}
+        columnDefs={columnDefs}
+        defaultColDef={{
+          sortable: true,
+          resizable: true,
+          filter: true,
+          flex: 1,
+          minWidth: 100,
+        }}
+        rowHeight={55}
+        handleCellClick={undefined}
+        loading={false}
+        disableClickSelectionRenderers={false}
+        noDataTxt='No Records Found'
+        TableHeight={80}
+        // rowSelection={rowSelectionType}
+        onSelectionChanged={onSelectionChanged}
+        pageSize={pageSize}
+        totalDataCount={totalData}
+        serverRowSize={pageSize}
+        currentPage={page}
+        serverSidePagination={true}
+        serverPageCount={Math.ceil(totalData / pageSize)}
+        setServerRowSize={(rowSize: number) => {
+          setPageSize(rowSize);
+        }}
+        setServerSidePage={(e: any, p: number) => {
+          setPage(p);
+        }}
+        defaultPagination={defaultPagination}
+        setPageSize={setPageSize}
+        setPage={setPage}
+      />
+
+      {/* </div> */}
+      {/* </StyledBox> */}
+    </div>
   );
 }
 
