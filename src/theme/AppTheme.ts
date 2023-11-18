@@ -18,14 +18,14 @@ export const theme = createTheme({
       white: "#fff",
     },
     primary: {
-      main: colors.amber[400],
-      light: colors.amber[200],
-      dark: colors.amber[600],
+      main: colors.deepPurple[500],
+      light: colors.deepPurple[400],
+      dark: colors.deepPurple[600],
     },
     secondary: {
-      main: colors.amber["A400"],
-      dark: colors.amber["A700"],
-      light: colors.amber[50],
+      main: colors.blue["A400"],
+      dark: colors.blue["A700"],
+      light: colors.blue[50],
     },
     error: {
       main: colors.red["500"],
