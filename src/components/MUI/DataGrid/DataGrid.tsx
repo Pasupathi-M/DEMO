@@ -9,9 +9,9 @@ import { useRef, useCallback, useEffect, useState, useMemo } from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 import classnames from 'classnames';
 import _ from 'lodash';
-import { AgGridReact } from '@ag-grid-community/react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.css';
+import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
+import 'ag-grid-community/styles/ag-grid.css'; // Core grid CSS, always needed
+import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 import { Box, LinearProgress, Pagination, styled } from '@mui/material';
 
 const TableStyles = {

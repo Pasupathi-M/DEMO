@@ -211,7 +211,7 @@ export const SideBarMenus = () => {
                     </ListItemText>
                   </ListItemButton>
                 </Tooltip>
-                {openSubmenu[index] && <SubMenus menus={menu} />}
+                {openSubmenu[index] && <SubMenus subMenusItems={menu?.subMenusItems} />}
               </>
             ) : (
               <>

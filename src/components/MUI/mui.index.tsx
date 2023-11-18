@@ -41,3 +41,11 @@ export * from './Buttons/Button'
 
 //****************** Extra */
 export * from './Extras/Extras'
+
+// ************** Autocomplete
+export * from './Autocomplete/Autocomplete'
+
+// ************** Date picker
+export * from './DatePicker/DatePicker'
+
+export * from './CheckBoxes/CheckBox'

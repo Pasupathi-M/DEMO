@@ -12,6 +12,7 @@ import { styled } from '@mui/styles';
 import { ColDef } from '@ag-grid-community/core';
 import ServerSideGrid from '../../components/MUI/DataGrid/DataGrid';
 import { Data } from './Data';
+import * as _ from 'lodash';
 
 const StyledBox = styled(Box)({
   width: '100%',
@@ -124,6 +125,11 @@ function IconComponent(props: any) {
 function TestPage5() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedRow, setSelectedRow] = useState<any>([]);
+  const [pageSize, setPageSize] = useState(10);
+  const [page, setPage] = useState(0);
+  const [totalData, setTotalData] = useState(30);
+  const defaultPagination = [10, 20, 30, 40, 50, 100, 200, 500];
+
   console.log('selectedRow', selectedRow);
   const columnDefs: ColDef[] = [
     {
@@ -173,7 +179,7 @@ function TestPage5() {
           }}
           rowHeight={55}
           handleCellClick={undefined}
-          loading={loading}
+          loading={false}
           disableClickSelectionRenderers={false}
           noDataTxt='No Records Found'
           TableHeight={80}
@@ -210,7 +216,7 @@ function TestPage5() {
             <Box sx={{ mr: 1 }}>Row per page</Box>
             <Select
               variant='standard'
-              disabled={loading}
+              //   disabled={loading}
               value={pageSize}
               onChange={(e: any) => {
                 setPage(0);
