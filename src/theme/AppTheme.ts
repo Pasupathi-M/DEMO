@@ -1,6 +1,13 @@
 import { createTheme, colors } from "@mui/material";
 
 export const theme = createTheme({
+  components: {
+  },
+  // typography: {
+  //   allVariants: {
+  //     color: "#ffffff"
+  //   },
+  // },
   breakpoints: {
     keys: ["xs", "sm", "md", "lg", "xl"],
     values: {

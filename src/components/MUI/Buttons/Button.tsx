@@ -1,7 +1,8 @@
 /* eslint-disable no-empty-pattern */
-import { Button } from '@mui/material'
+import { Button, Radio, RadioProps } from '@mui/material'
 import { styled } from '@mui/system'
 import { LoadingButton } from '@mui/lab'
+import { FC } from 'react'
 
 
 // eslint-disable-next-line no-empty-pattern
@@ -24,4 +25,7 @@ export const LoadingButton_v1 = styled(LoadingButton)(({ }) => ({
     borderRadius: '0',
     width: '100%'
 }))
+
+interface IRadioProps extends RadioProps {}
+export const RadioButton: FC<IRadioProps> = (props: IRadioProps) => <Radio {...props}/>
 
