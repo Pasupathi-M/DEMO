@@ -13,6 +13,7 @@ import {
   AutocompleteRenderInputParams,
   TextFieldProps,
   Grid,
+  Typography,
 } from "@mui/material";
 
 // ************** Redux Hooks
@@ -24,7 +25,10 @@ import {
   AutoComplete,
   AutoTextField,
   Datepicker,
-  CheckBox
+  CheckBox,
+  RadioButton,
+  ToggleSwitch,
+  ButtonV1,
 } from "../../components/MUI/mui.index";
 
 export default function TestPageOne() {
@@ -41,10 +45,10 @@ export default function TestPageOne() {
     <>
       <Grid container xs={12} spacing={2}>
         <Grid item xs={12}>
-          <TextField label="test" />
+          <Typography>Components Page</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Textfield label="hello" size="small" variant="" />
+          <Textfield label="hello" />
         </Grid>
         <Grid item xs={12}>
           <AutoComplete
@@ -54,27 +58,40 @@ export default function TestPageOne() {
                 value: "Test",
               },
               {
-                label: "test",
+                label: "sfggfhj",
                 value: "Test",
               },
               {
-                label: "test",
+                label: "sdsf",
                 value: "Test",
               },
               {
-                label: "test",
+                label: "gfdghf",
                 value: "Test",
               },
             ]}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <Textfield {...params} label="autocomplete" />
+            )}
             // defaultValue={{label:"test", value: 'test'}}
           />
         </Grid>
         <Grid item xs={12}>
-          <Datepicker onChange={(value) => console.log('value', value)}/>
+          <Datepicker onChange={(value) => console.log("value", value)} />
         </Grid>
         <Grid item xs={12}>
           <CheckBox />
+        </Grid>
+        <Grid item xs={12}>
+          <RadioButton />
+        </Grid>
+        <Grid item xs={12}>
+          <ToggleSwitch />
+        </Grid>
+        <Grid item xs={12}>
+          <ButtonV1 color="error">One</ButtonV1>
+          <ButtonV1 variant="outlined">One</ButtonV1>
+          <ButtonV1>One</ButtonV1>
         </Grid>
       </Grid>
     </>

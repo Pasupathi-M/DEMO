@@ -24,7 +24,7 @@ export const TextField_v1 = styled(TextField)(({ }: TNestedObj) => ({
 // }))
 
 interface ITextFieldProps extends TextFieldProps {}
-export const Textfield: FC<ITextFieldProps> = (props: ITextFieldProps) => {
+export const Textfield: FC<TextFieldProps> = (props: TextFieldProps) => {
     return <TextField 
     sx={{
         borderRadius: 20
@@ -33,7 +33,6 @@ export const Textfield: FC<ITextFieldProps> = (props: ITextFieldProps) => {
     InputLabelProps={{
         shrink: true
     }}
-    label= "hello 345"
     variant={ props?.variant || 'outlined'}
     {...props} 
     />

@@ -44,7 +44,7 @@ export const theme = createTheme({
     }
   },
   shape: {
-    borderRadius: 5,
+    borderRadius: 8,
   },
   zIndex: {
     appBar: 1100,

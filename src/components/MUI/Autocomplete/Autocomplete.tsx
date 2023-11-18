@@ -38,7 +38,10 @@ interface CustomAutocompleteProps
 
 export const AutoComplete: FC<CustomAutocompleteProps> = (
   props: CustomAutocompleteProps
-) => <Autocomplete {...props} />;
+) => <Autocomplete 
+size="small"
+{...props} 
+/>;
 // const StyledAutotext = styled(TextField)(() => ({}));
 
 // export const AutoTextField = ({ children, ...rest }: TextFieldProps) => (
