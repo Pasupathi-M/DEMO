@@ -12,6 +12,9 @@ import { RANDOM_UNIQUE } from "./utils/getUnique";
 // ************************* Pages
 const SignIn = lazy(() => import("./pages/Authorizations/SignIn"));
 const SignUp = lazy(() => import("./pages/Authorizations/Signup"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const OtpVerify = lazy(() => import("./pages/OTPVerify"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 
 // ******************* App Data
 import { APP_ROUTES } from "./data/AppRoutes";
@@ -33,6 +36,30 @@ function App() {
         element={
           <Suspense>
             <SignUp />
+          </Suspense>
+        }
+      />
+      <Route
+        path={APP_ROUTES?.FORGOT_PASSWORD?.pathName}
+        element={
+          <Suspense>
+            <ForgotPassword />
+          </Suspense>
+        }
+      />
+      <Route
+        path={APP_ROUTES?.OTP_VERIFY?.pathName}
+        element={
+          <Suspense>
+            <OtpVerify />
+          </Suspense>
+        }
+      />
+      <Route
+        path={APP_ROUTES?.RESET_PASSWORD?.pathName}
+        element={
+          <Suspense>
+            <ResetPassword />
           </Suspense>
         }
       />
