@@ -1,9 +1,15 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+/**
+ * eslint-disable react-hooks/rules-of-hooks
+ *
+ * @format
+ */
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 // **************** MUI
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
+import React, { ReactNode, CSSProperties, ElementType } from "react";
 
 // const [sizeAndWidth, setSizeAndWidth] = useState({
 //     height: `${window.innerHeight}px`,
@@ -16,6 +22,12 @@ import { styled } from "@mui/system";
 //         width: `${window.innerWidth}px`
 //     })
 // }, [window.innerHeight, window.innerWidth])
+
+interface ContainerBoxV2Props {
+  boxType?: ElementType;
+  styles?: CSSProperties;
+  children: ReactNode;
+}
 
 export const ContainerBox = styled(Box)(({ theme }) => ({
   border: "none",
@@ -60,7 +72,11 @@ export const AppContentBox = styled(Box)(({ theme }) => ({
   flexShrink: 1,
 }));
 
-export const ContainerBoxV2 = ({ boxType, styles, children }: any) => (
+export const ContainerBoxV2: React.FC<ContainerBoxV2Props> = ({
+  boxType,
+  styles,
+  children,
+}) => (
   <Box component={boxType ? boxType : "div"} sx={{ ...styles }}>
     {children}
   </Box>

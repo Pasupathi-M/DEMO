@@ -1,3 +1,5 @@
+/** @format */
+
 import "./styles/App.scss";
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -77,7 +79,6 @@ function App() {
         element={<AppLayout />}
         key={RANDOM_UNIQUE()}
       >
-        {/* {...TestArray} */}
         {...PageComponents()}
       </Route>
     </Routes>
