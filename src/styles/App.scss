@@ -3,14 +3,8 @@
    margin: 0%
 }
 body {
-   overflow: hidden;
+   overflow: auto;
 }
-
-// @media only screen and (max-width: 767px) {
-//    body {
-//       overflow: scroll;
-//    }
-// }
 
 ::-webkit-scrollbar {
    -webkit-appearance: none;

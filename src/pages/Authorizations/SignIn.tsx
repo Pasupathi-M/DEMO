@@ -89,7 +89,7 @@ export default function SignIn() {
           <ContainerBoxV2
             styles={{
               width: "inherit",
-              height: "100vh",
+              height: "inherit",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -103,7 +103,7 @@ export default function SignIn() {
                   fontSize: "30px",
                   fontWeight: "600",
                 }}
-                pb={4}
+                pb={5}
               >
                 SALES 10X
               </Typography>
@@ -113,7 +113,7 @@ export default function SignIn() {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                pb={2}
+                pb={5}
               >
                 <img src={GridImg} alt="..." style={{ width: "70%" }} />
               </Box>
@@ -156,7 +156,7 @@ export default function SignIn() {
                 backgroundColor: "#7145B0",
                 height: "95vh",
                 width: isMobile ? "100%" : "70%",
-                borderRadius: 6,
+                borderRadius: 10,
               }}
             >
               <form
