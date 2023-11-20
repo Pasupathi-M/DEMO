@@ -5,240 +5,250 @@ import { useState } from "react";
 // **************** Component
 import {
   ContainerWrapper,
-  PaperContainerV2,
   ContainerBoxV2,
-  TextField_v1,
-  Divider_v1,
-  Button_v2,
   LoadingButton_v1,
+  TextField_v2,
 } from "../../components/MUI/mui.index";
 
 // ******************** Formik
 import { useFormik } from "formik";
 
-
 // ************** MUI
-import { Grid, IconButton, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  Theme,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 // *************** Router
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 // ************* const
-import { APP_ROUTES } from '../../data/AppRoutes'
-import { signUpSchema } from '../../data/yup/signup.yup'
-import { API_DATE_FORMAT } from '../../data/AppConst'
+import { APP_ROUTES } from "../../data/AppRoutes";
+import { signinSchema } from "../../data/yup/signin.yup";
 
 // ***************** Service
-import AuthenticationService from '../../services/authentication/Authentication.service'
+import AuthenticationService from "../../services/authentication/Authentication.service";
 import { AxiosResponse } from "axios";
+import LocalStorageService from "../../libs/localStorage.service";
 
-// ****************** utils
-import { currentDate } from '../../utils/datetime'
-
-
+import GridImg from "../../assets/png/Group.png";
 
 export default function SignUp() {
-    const navigate = useNavigate()
-  const [showPass, setShowPass] = useState<boolean>(false);
-  const [showConfirmPass, setShowConfirmPass] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false)
-  async function getSignIn(value: Record<string, unknown>, action: any){
-    try{
-      // console.log('values', value)
-      const payload = {
-        ...value,
-        createddate: currentDate(API_DATE_FORMAT[5]),
-        updateddate:currentDate(API_DATE_FORMAT[5])
-      } 
-      console.log('payload', payload)
-      console.log(currentDate(API_DATE_FORMAT[5]))
-      setLoading(false)
-      const response: AxiosResponse = await AuthenticationService.signUp(payload)
-      if(response?.status){
-        console.log('data', response)
-        navigate(APP_ROUTES?.SIGN_IN?.pathName)
-      }
-      setLoading(false)
-    }catch(e){
-      console.log('ERROR', e)
-      setLoading(false)
+  const navigate = useNavigate();
+  const isMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("sm")
+  );
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const getSignIn = async (
+    values: Record<string, any>,
+    _action: Record<string, "Function">
+  ) => {
+    console.log("values", values);
+    setLoading(true);
+    const resData: AxiosResponse = await AuthenticationService.signIn(values);
+    console.log("Sign in response", resData);
+    if (resData?.status) {
+      LocalStorageService.setItem(
+        "user",
+        JSON.stringify({
+          username: resData?.data?.response?.username,
+          email: resData?.data?.response?.email,
+        })
+      );
+      LocalStorageService.setItem(
+        "access-token",
+        resData?.data?.response?.token
+      );
+      navigate(APP_ROUTES?.LANDING?.pathName);
     }
-  }
+    setLoading(false);
+  };
   const formik = useFormik({
     initialValues: {
-      username: "",
-      phoneno: "",
       email: "",
       password: "",
-      confirmPassword: ""
     },
-    validationSchema: signUpSchema,
-    onSubmit: getSignIn,
+    validationSchema: signinSchema,
+    onSubmit: (value: Record<string, any>, act: any) => getSignIn(value, act),
   });
   return (
     <ContainerWrapper>
-      <ContainerBoxV2
-        styles={{
-          width: "inherit",
-          height: "inherit",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <PaperContainerV2
-          styles={{
-            padding: "0%",
-            display: "flex",
-            height: "auto",
-            width: "25%",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 0,
-            borderTopLeftRadius: 30,
-            borderBottomRightRadius: 15,
-          }}
-        >
-          <form
-            onSubmit={formik.handleSubmit}
-            style={{
+      <Grid container xs={12}>
+        <Grid item xs={12} md={6} lg={6}>
+          <ContainerBoxV2
+            styles={{
+              width: "inherit",
+              height: "100vh",
               display: "flex",
-              flexWrap: "wrap",
+              alignItems: "center",
               justifyContent: "center",
-              width: "90%",
-              padding: "15% 0% 5% 0%" 
-              // height:'inherit'
             }}
           >
-            <Grid container xs={12} rowGap={2}>
-            <Grid item xs={12}>
-                <TextField_v1
-                  label="User name"
-                  placeholder="enter email"
-                  fullWidth
-                  size="small"
-                  type="text"
-                  name="username"
-                  value={formik?.values?.username}
-                  onChange={formik?.handleChange}
-                  onBlur={formik?.handleBlur}
-                  error={Boolean(formik?.errors?.username && formik?.touched?.username)}
-                  helperText={ formik?.touched?.username && formik?.errors?.username}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField_v1
-                  label="Phone No"
-                  placeholder="enter email"
-                  fullWidth
-                  size="small"
-                  type="number"
-                  name="phoneno"
-                  value={formik?.values?.phoneno}
-                  error={Boolean(formik?.errors?.phoneno && formik?.touched?.phoneno)}
-                  helperText={formik?.touched?.phoneno && formik?.errors?.phoneno}
-                  onChange={formik?.handleChange}
-                  onBlur={formik?.handleBlur}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField_v1
-                  label="Email"
-                  placeholder="enter email"
-                  fullWidth
-                  size="small"
-                  type="email"
-                  name="email"
-                  value={formik?.values?.email}
-                  error={Boolean( formik?.touched?.email && formik?.errors?.email)}
-                  helperText={ formik?.touched?.email && formik?.errors?.email}
-                  onChange={formik?.handleChange}
-                  onBlur={formik?.handleBlur}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField_v1
-                  label="Password"
-                  type={showPass ? "text" : "password"}
-                  placeholder="enter password"
-                  fullWidth
-                  size="small"
-                  InputProps={{
-                    endAdornment: (
-                      <IconButton
-                        onClick={() => {
-                          setShowPass(!showPass);
-                        }}
-                        disableRipple
-                      >
-                        {showPass ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    ),
+            <Box>
+              <Typography
+                style={{
+                  textAlign: "center",
+                  color: "#2C2B2B",
+                  fontSize: "30px",
+                  fontWeight: "600",
+                }}
+                pb={4}
+              >
+                SALES 10X
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                pb={2}
+              >
+                <img src={GridImg} alt="..." style={{ width: "70%" }} />
+              </Box>
+              <Typography
+                style={{
+                  textAlign: "center",
+                  color: "#6e6d6d",
+                  fontWeight: "600",
+                }}
+              >
+                Experience our incredible features by requesting a demo
+                instantly!{" "}
+                <span
+                  style={{
+                    color: "#7145B0",
+                    cursor: "pointer",
+                    paddingLeft: "10px",
                   }}
-                  name="password"
-                  value={formik?.values?.password}
-                  error={Boolean( formik?.touched?.password && formik?.errors?.password)}
-                  helperText={ formik?.touched?.password && formik?.errors?.password}
-                  onChange={formik?.handleChange}
-                  onBlur={formik?.handleBlur}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField_v1
-                  label="Confirm Password"
-                  type={showConfirmPass ? "text" : "password"}
-                  placeholder="enter password"
-                  fullWidth
-                  size="small"
-                  InputProps={{
-                    endAdornment: (
-                      <IconButton
-                        onClick={() => {
-                            setShowConfirmPass(!showConfirmPass);
-                        }}
-                        disableRipple
-                      >
-                        {showConfirmPass ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    ),
+                >
+                  Request demo
+                </span>
+              </Typography>
+            </Box>
+          </ContainerBoxV2>
+        </Grid>
+        <Grid item xs={12} md={6} lg={6}>
+          <ContainerBoxV2
+            styles={{
+              width: "inherit",
+              height: "inherit",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+            p={2}
+          >
+            <Box
+              sx={{
+                backgroundColor: "#7145B0",
+                height: "95vh",
+                width: isMobile ? "100%" : "70%",
+                borderRadius: 10,
+              }}
+            >
+              <form
+                onSubmit={formik.handleSubmit}
+                style={{ padding: "8%", marginTop: "40px" }}
+              >
+                <Typography
+                  style={{
+                    color: "#ffff",
+                    fontSize: "30px",
+                    fontWeight: "600",
                   }}
-                  name="confirmPassword"
-                  value={formik?.values?.confirmPassword}
-                  error={Boolean(formik?.touched?.confirmPassword && formik?.errors?.confirmPassword)}
-                  helperText={ formik?.touched?.confirmPassword && formik?.errors?.confirmPassword}
-                  onChange={formik?.handleChange}
-                  onBlur={formik?.handleBlur}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <LoadingButton_v1 variant="contained" type="submit" loading={loading}>singup</LoadingButton_v1>
-              </Grid>
-              <Grid item xs={12}>
-                <Divider_v1 style={{ width: "100%" }} />
-              </Grid>
-              <Grid item xs={12} style={{
-                display: 'flex',
-                justifyContent: 'center',
-                width: '100%'
-              }}>
-                <Typography>
-                  {" "}
-                  Do you have a account?&nbsp;{" "}
-                  <Button_v2
-                    disableRipple
-                    size="small"
-                    style={{ borderStyle: "none" }}
-                    onClick={() => {navigate(APP_ROUTES?.SIGN_IN?.pathName)}}
-                  >
-                    Signin
-                  </Button_v2>
+                  mb={2}
+                >
+                  Login
                 </Typography>
-              </Grid>
-            </Grid>
-          </form>
-        </PaperContainerV2>
-      </ContainerBoxV2>
+                <Typography
+                  style={{
+                    color: "#ffff",
+                    fontSize: "20px",
+                    fontWeight: "500",
+                  }}
+                  mb={4}
+                >
+                  Welcome Onboard With Us!
+                </Typography>
+                <Box pb={3}>
+                  <InputLabel
+                    shrink
+                    sx={{ fontSize: "18px", fontWeight: "600", color: "#ffff" }}
+                  >
+                    Username
+                  </InputLabel>
+                  <TextField_v2
+                    fullWidth
+                    size="small"
+                    placeholder="Enter your username"
+                    sx={{ background: "#fff", borderRadius: 2 }}
+                  />
+                </Box>
+                <Box>
+                  <InputLabel
+                    shrink
+                    sx={{ fontSize: "18px", fontWeight: "600", color: "#ffff" }}
+                  >
+                    Password
+                  </InputLabel>
+                  <TextField_v2
+                    fullWidth
+                    size="small"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                        >
+                          {showPassword ? (
+                            <VisibilityOff fontSize="small" />
+                          ) : (
+                            <Visibility fontSize="small" />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    sx={{ background: "#fff", borderRadius: 2 }}
+                  />
+                </Box>
+                <Box sx={{ display: "flex" }} pt={1} pb={5}>
+                  {/* <Typography style={{ color: "#ffff", cursor: "pointer" }}>
+                    Forgot Password?
+                  </Typography> */}
+                </Box>
+                <LoadingButton_v1
+                  fullWidth
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #9751FA 0%, #7B26F7 100%)",
+                    boxShadow: "0px 4px 60px rgba(0, 0, 0, 0.25)",
+                    borderRadius: "7px",
+                    border: "1px #A465FF solid",
+                    color: "#ffff",
+                    fontWeight: "600",
+                  }}
+                >
+                  Sign Up
+                </LoadingButton_v1>
+              </form>
+            </Box>
+          </ContainerBoxV2>
+        </Grid>
+      </Grid>
     </ContainerWrapper>
   );
 }

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { TextField, TextFieldProps } from "@mui/material";
+import { InputBase, TextField, TextFieldProps, alpha } from "@mui/material";
 import { styled } from "@mui/system";
 // ************* Types
 import { TNestedObj } from "../../../types/global.types.ts";
@@ -28,3 +28,45 @@ export const Textfield: FC<TextFieldProps> = (props: TextFieldProps) => {
     />
   );
 };
+
+export const TextField_v2 = styled(InputBase)(({ theme }) => ({
+  "label + &": {
+    marginTop: theme.spacing(0),
+  },
+  "& .MuiInputBase-input": {
+    borderRadius: 4,
+    position: "relative",
+    backgroundColor: theme.palette.mode === "light" ? "#FFFFFF" : "#1A2027",
+    border: "1px solid",
+    borderColor: theme.palette.mode === "light" ? "#E0E3E7" : "#2D3843",
+    fontSize: 16,
+    width: "100%",
+    padding: "6px 12px",
+    // transition: theme.transitions.create([
+    //   'border-color',
+    //   'background-color',
+    //   'box-shadow',
+    // ]),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+    "&:focus": {
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      borderColor: theme.palette.primary.main,
+    },
+    "&::placeholder": {
+      color: "#969696",
+      opacity: 1,
+    },
+  },
+}));
