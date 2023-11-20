@@ -17,6 +17,9 @@ export const APP_ROUTES: Record<string, any> = Object.freeze({
   RESET_PASSWORD: {
     pathName: "/reset_password",
   },
+  REQUEST_DEMO: {
+    pathName: "/request_demo",
+  },
   LANDING: {
     pathName: "sales10x",
   },

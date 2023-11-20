@@ -15,6 +15,7 @@ const SignUp = lazy(() => import("./pages/Authorizations/Signup"));
 const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 const OtpVerify = lazy(() => import("./pages/OTPVerify"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const RequestDemo = lazy(() => import("./pages/RequestDemo"));
 
 // ******************* App Data
 import { APP_ROUTES } from "./data/AppRoutes";
@@ -60,6 +61,14 @@ function App() {
         element={
           <Suspense>
             <ResetPassword />
+          </Suspense>
+        }
+      />
+      <Route
+        path={APP_ROUTES?.REQUEST_DEMO?.pathName}
+        element={
+          <Suspense>
+            <RequestDemo />
           </Suspense>
         }
       />

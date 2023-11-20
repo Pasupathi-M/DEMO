@@ -41,7 +41,7 @@ export const TextField_v2 = styled(InputBase)(({ theme }) => ({
     borderColor: theme.palette.mode === "light" ? "#E0E3E7" : "#2D3843",
     fontSize: 16,
     width: "100%",
-    padding: "8px 12px",
+    padding: "6px 12px",
     // transition: theme.transitions.create([
     //   'border-color',
     //   'background-color',
@@ -63,6 +63,10 @@ export const TextField_v2 = styled(InputBase)(({ theme }) => ({
     "&:focus": {
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
+    },
+    "&::placeholder": {
+      color: "#969696",
+      opacity: 1,
     },
   },
 }));

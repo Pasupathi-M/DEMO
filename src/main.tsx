@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./theme/AppTheme";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 // ****************** Redux
 import { Provider } from "react-redux";
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ThemeProvider theme={theme}>
         <Router>
           <App />
+          <ToastContainer />
         </Router>
       </ThemeProvider>
     </Provider>

@@ -1,0 +1,15 @@
+.custom-stepper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    position: relative;
+}
+
+.custom-stepper::after {
+    content: '';
+    width: 70%;
+    border: 1px solid #fff;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+}
