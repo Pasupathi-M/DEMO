@@ -132,6 +132,7 @@ export default function SignIn() {
                     cursor: "pointer",
                     paddingLeft: "10px",
                   }}
+                  onClick={() => navigate(APP_ROUTES?.REQUEST_DEMO?.pathName)}
                 >
                   Request demo
                 </span>
@@ -230,7 +231,12 @@ export default function SignIn() {
                   pt={1}
                   pb={5}
                 >
-                  <Typography style={{ color: "#ffff", cursor: "pointer" }}>
+                  <Typography
+                    style={{ color: "#ffff", cursor: "pointer" }}
+                    onClick={() => {
+                      navigate(APP_ROUTES?.FORGOT_PASSWORD?.pathName);
+                    }}
+                  >
                     Forgot Password?
                   </Typography>
                 </Box>
